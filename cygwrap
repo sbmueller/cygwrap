@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# get filepath
+path="${@:$(($#)):1}"
+# get command
+cmd="${@:1:1}"
+
+# remove command and path from argument list
+set -- "${@:2:$(($#-2))}"
+
+# call with converted path
+"${cmd}" "${@} $(cygpath -w $path)"
